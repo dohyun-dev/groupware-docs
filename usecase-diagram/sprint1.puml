@@ -1,0 +1,50 @@
+@startuml
+'https://plantuml.com/use-case-diagram`
+
+left to right direction
+
+actor GroupwareProvider as "그룹웨어 제공자"
+
+actor Admin as "관리자"
+
+package CompanyManageSystem as "회사 관리 시스템" {
+  usecase "회사 등록" as RegisterCompany
+  usecase "회사 정보 관리" as ManageCompanyInfo
+  usecase "회사 정보 조회" as FindCompanyInfo
+  usecase "회사 정보 변경" as UpdateCompany
+  usecase "회사 삭제" as DeleteCompany
+
+  usecase "조직도 관리" as ManageOrgaganizationMap
+  usecase "조직도 조회" as FindOrganizationMap
+  usecase "조직도 변경" as UpdateOrganizationMap
+  usecase "조직도 변경 예약" as ReserveOrganizationChange
+  usecase "부서 추가" as AddDepartment
+  usecase "부서 수정" as EditDepartment
+  usecase "부서 삭제" as DeleteDepartment
+  usecase "조직도 변경 내역 관리" as ManageChangeOrgaganizationMapSystem
+  usecase "조직도 변경 내역 조회" as FindOrganizationMapChangeHistory
+  usecase "조직도 변경 예약 수정" as UpdateOrganizationMapChangeHistory
+  usecase "조직도 변경 예약 삭제" as DeleteOrganizationMapChangeHistory
+}
+
+GroupwareProvider --> RegisterCompany
+Admin --> ManageCompanyInfo
+Admin --> ManageOrgaganizationMap
+ManageCompanyInfo --> FindCompanyInfo
+ManageCompanyInfo --> UpdateCompany
+ManageCompanyInfo --> DeleteCompany
+ManageOrgaganizationMap ..> FindOrganizationMap
+ManageOrgaganizationMap ..> UpdateOrganizationMap
+ManageOrgaganizationMap ..> ManageChangeOrgaganizationMapSystem
+UpdateOrganizationMap ..> AddDepartment
+UpdateOrganizationMap ..> EditDepartment
+UpdateOrganizationMap ..> DeleteDepartment
+UpdateOrganizationMap ..> ReserveOrganizationChange
+ManageChangeOrgaganizationMapSystem ..> FindOrganizationMapChangeHistory
+ManageChangeOrgaganizationMapSystem ..> UpdateOrganizationMapChangeHistory
+ManageChangeOrgaganizationMapSystem ..> DeleteOrganizationMapChangeHistory
+
+
+
+
+@enduml
